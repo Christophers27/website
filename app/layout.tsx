@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SectionContextProvider } from "@/context/sectionContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,7 +9,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Christopher Setiabudi | Developer",
-  description: "Personal website of Christopher Setiabudi, showcasing my work and projects.",
+  description:
+    "Personal website of Christopher Setiabudi, showcasing my work and projects.",
 };
 
 export default function RootLayout({
@@ -18,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body
+        className={`${inter.className} antialiased bg-neutral-950 text-white`}
+      >
+        <SectionContextProvider>{children}</SectionContextProvider>
+      </body>
     </html>
   );
 }
