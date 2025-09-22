@@ -2,7 +2,8 @@
 
 import { createContext, useState, ReactNode, useContext } from "react";
 
-export type Section = "about" | "projects" | "experience" | "contact";
+export const sections = ["about", "projects", "experience", "skills", "contact"] as const;
+export type Section = typeof sections[number];
 
 type SectionContextType = {
   activeSection: Section;

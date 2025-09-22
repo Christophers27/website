@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import { SectionContextProvider } from "@/context/sectionContext";
+import Header from "@/components/header";
 
-const inter = Inter({
+const firaCode = Fira_Code({
   subsets: ["latin"],
+  variable: "--font-fira-mono",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,10 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} antialiased bg-neutral-950 text-white`}
-      >
-        <SectionContextProvider>{children}</SectionContextProvider>
+      <body className={`${firaCode.className} antialiased`}>
+        <SectionContextProvider>
+          <Header />
+          {children}
+        </SectionContextProvider>
       </body>
     </html>
   );

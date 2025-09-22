@@ -7,7 +7,7 @@ export default function Sidebar() {
   const { activeSection } = useSectionContext();
 
   return (
-    <header className="sticky top-0 max-h-screen w-1/3 p-8">
+    <header className="sticky top-0 max-h-screen w-1/3 p-8 border-2 border-white">
       <div className="flex flex-col rounded-4xl p-4 border-2 h-full border-sky-600">
         <h1 className="">Christopher Setiabudi</h1>
         <h2 className="">
