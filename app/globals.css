@@ -1,9 +1,40 @@
 @import "tailwindcss";
 
-.clip-corner {
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+@keyframes line-grid-move {
+  0% {
+    background-position: 79px 79px;
+  }
+  100% {
+    background-position: 143px 143px;
+  }
 }
 
-.clip-corner-lg {
-  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+.animate-line-grid-move {
+  animation: line-grid-move 30s linear infinite;
+}
+
+@keyframes line-mask-move {
+  0% {
+    background-position: -0.2px -0.2px;
+  }
+  100% {
+    background-position: 63.8px 63.8px;
+  }
+}
+
+.animate-line-mask-move {
+  animation: line-mask-move 30s linear infinite;
+}
+
+@keyframes dot-grid-move {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 64px 64px;
+  }
+}
+
+.animate-dot-grid-move {
+  animation: dot-grid-move 30s linear infinite;
 }

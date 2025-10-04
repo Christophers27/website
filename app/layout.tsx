@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { Fira_Code } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { SectionContextProvider } from "@/context/sectionContext";
-import Header from "@/components/header";
 
-const firaCode = Fira_Code({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-fira-mono",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Christopher Setiabudi | Developer",
+  title: "Christopher Setiabudi | Software Engineer",
   description:
-    "Personal website of Christopher Setiabudi, showcasing my work and projects.",
+    "Portfolio website of Christopher Setiabudi, a software engineer with expertise in AI/ML training and deployment, and front-end development.",
 };
 
 export default function RootLayout({
@@ -24,12 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${firaCode.className} antialiased`}>
-        <SectionContextProvider>
-          <Header />
-          {children}
-        </SectionContextProvider>
-      </body>
+      <body className={`${inter.className} antialiased`}>
+        
+        {children}</body>
     </html>
   );
 }
