@@ -15,9 +15,9 @@ export default function Cursor() {
 
   return (
     <div
-      className="pointer-events-none fixed top-0 left-0 z-50 w-8 h-8 rounded-full bg-cyan-300/20 border border-cyan-300/40 mix-blend-screen"
+      className="pointer-events-none fixed top-0 left-0 z-50 w-12 h-12 rounded-full border-2 border-cyan-300 mix-blend-screen"
       style={{
-        transform: `translate(${pos.x - 32}px, ${pos.y - 32}px)`,
+        transform: `translate(${pos.x - 24}px, ${pos.y - 24}px)`,
       }}
     />
   );
