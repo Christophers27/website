@@ -1,9 +1,11 @@
 "use client";
 
+import { useSectionContext } from "@/context/sectionContext";
 import React, { useState } from "react";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { activeSection } = useSectionContext();
 
   return (
     <div
@@ -18,8 +20,9 @@ export default function Sidebar() {
           <div className="space-y-4">
             <div className="text-2xl font-semibold">MENU</div>
             <nav className="flex flex-col space-y-2">
-              <a className="hover:underline">Home</a>
-              <a className="hover:underline">About</a>
+              <a className={`${activeSection === "about" ? "underline" : ""}`}>About</a>
+              <a className={`${activeSection === "projects" ? "underline" : ""}`}>Projects</a>
+              <a className={`${activeSection === "experience" ? "underline" : ""}`}>Experience</a>
             </nav>
           </div>
         ) : (
