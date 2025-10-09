@@ -51,11 +51,11 @@
 
 @utility diagonal-cut-* {
   clip-path: polygon(
-    0% --value(integer) px,
-    --value(integer) px 0%,
+    0% --value(integer)px,
+    --value(integer)px 0%,
     100% 0%,
-    100% calc(100% - --value(integer) px),
-    calc(100% - --value(integer) px) 100%,
+    100% calc(100% - --value(integer)px),
+    calc(100% - --value(integer)px) 100%,
     0 100%
   );
 }

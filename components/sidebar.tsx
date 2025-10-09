@@ -22,7 +22,9 @@ export default function Sidebar() {
       onMouseLeave={() => setIsOpen(false)}
       className={`z-20 sticky top-0 h-screen border-r border-white/10 backdrop-blur-xs bg-white/5 
                  shadow-[inset_0_0_8px_rgba(255,255,255,0.15)] transition-all duration-300 
-                 ease-in-out flex flex-col justify-between ${isOpen ? "w-48" : "w-16"}`}
+                 ease-in-out flex flex-col justify-between ${
+                   isOpen ? "w-48" : "w-16"
+                 }`}
     >
       {/* --- TOP SECTION --- */}
       <div className="relative flex flex-col space-y-6 items-start">
@@ -47,24 +49,18 @@ export default function Sidebar() {
                 key={item.id}
                 href={`#${item.id}`}
                 whileHover={{ x: isOpen ? 3 : 0 }}
-                className="relative flex items-center transition-all duration-300 group"
+                className="relative flex items-center group cursor-none"
               >
                 {/* Section Marker Box */}
                 <motion.div
                   layout
-                  className={`diagonal-cut-2 flex items-center font-bold transition-all duration-300 px-3.5
+                  className={`diagonal-cut-8 flex items-center font-bold transition-all duration-300 px-3.5 overflow-hidden h-6
+                    ${isOpen ? "w-40" : "w-10"}
                     ${
                       active
                         ? "bg-cyan-400/50 text-cyan-200 shadow-[0_0_8px_#22d3ee]"
                         : "bg-cyan-400/25 text-cyan-500 group-hover:bg-cyan-400/40 group-hover:text-cyan-300"
                     }`}
-                  style={{
-                    width: isOpen ? "10rem" : "2.5rem",
-                    height: "1.5rem",
-                    clipPath:
-                      "polygon(0% 8px, 8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)",
-                    overflow: "hidden",
-                  }}
                 >
                   {/* Number */}
                   <span className="flex-shrink-0 w-5 text-xs">{`0${
@@ -84,9 +80,6 @@ export default function Sidebar() {
           })}
         </div>
       </div>
-
-      {/* --- Random Stuff --- */}
-      <div className="rotate-90">Text</div>
 
       {/* --- BOTTOM INFO BAR --- */}
       <motion.div className="text-[10px] px-2 text-gray-400/70 font-mono text-center mb-4">
