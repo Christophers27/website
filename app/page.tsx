@@ -7,7 +7,7 @@ import Sidebar from "@/components/sidebar";
 
 export default function HeroAbout() {
   return (
-    <main className="relative min-h-screen bg-neutral-950 text-white overflow-hidden flex cursor-none">
+    <main className="relative min-h-[200vh] bg-neutral-950 text-white flex cursor-none">
       <Cursor />
       <GridBackground />
 
