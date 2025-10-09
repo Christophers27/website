@@ -51,7 +51,7 @@ export default function Widgets() {
     async function fetchWeather() {
       try {
         const res = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current=temperature_2m,weathercode`
+          `https://api.open-meteo.com/v1/forecast?latitude=${coords!.lat}&longitude=${coords!.lon}&current=temperature_2m,weathercode`
         );
         const data = await res.json();
         const temp = data.current?.temperature_2m ?? 0;

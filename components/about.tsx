@@ -129,21 +129,21 @@ export default function About() {
           </div>
         </div>
         <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-          I'm Chris, a Senior in Artificial Intelligence at Carnegie Mellon
-          University. I enjoy building smooth, efficient systems, whether it's a
+          I&apos;m Chris, a Senior in Artificial Intelligence at Carnegie Mellon
+          University. I enjoy building smooth, efficient systems, whether it&apos;s a
           sleek web app or a robust machine learning pipeline.
         </p>
         <p className="text-gray-300 text-sm md:text-base leading-relaxed">
           I have much experience working in the front-end, with React and
           Next.js, integrating databases and APIs to create seamless user
-          experiences. On the AI/ML side, I've built, trained, and deployed
+          experiences. On the AI/ML side, I&apos;ve built, trained, and deployed
           models using PyTorch and TensorFlow, particularly in computer vision
-          and natural language processing. I've also built webapps that
+          and natural language processing. I&apos;ve also built webapps that
           integrate AI, combining my skills in both areas.
         </p>
         <p className="text-gray-300 text-sm md:text-base leading-relaxed">
           Outside of code, I love reading fiction, gaming, running, and learning
-          more about AI and web development. I'm also bridging the gap in my
+          more about AI and web development. I&apos;m also bridging the gap in my
           full-stack skills by learning back-end technologies.
         </p>
       </motion.div>
