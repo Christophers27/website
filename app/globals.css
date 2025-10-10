@@ -38,24 +38,3 @@
 .animate-dot-grid-move {
   animation: dot-grid-move 60s linear infinite;
 }
-
-.scanlines {
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 2px,
-    transparent 3px
-  );
-}
-
-@utility diagonal-cut-* {
-  clip-path: polygon(
-    0% --value(integer)px,
-    --value(integer)px 0%,
-    100% 0%,
-    100% calc(100% - --value(integer)px),
-    calc(100% - --value(integer)px) 100%,
-    0 100%
-  );
-}

@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Christopher Setiabudi | Software Engineer",
   description:
-    "Portfolio website of Christopher Setiabudi, a software engineer with expertise in AI/ML training and deployment, and front-end development.",
+    "Portfolio website of Christopher Setiabudi, a fourth-year artificial intelligence student at Carnegie Mellon University and front-end software engineer.",
 };
 
 export default function RootLayout({
@@ -20,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${inter.className} antialiased bg-neutral-950 text-white`}
+      >
         <SectionContextProvider>{children}</SectionContextProvider>
       </body>
     </html>

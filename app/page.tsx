@@ -1,20 +1,25 @@
-"use client";
-
-import About from "@/components/about";
-import Cursor from "./cursor";
-import GridBackground from "./gridBackground";
+// page.tsx
 import Sidebar from "@/components/sidebar";
+import AboutSection from "@/components/aboutSection";
+import ProjectSection from "@/components/projectSection";
+import ExperienceSection from "@/components/experienceSection";
+import ContactSection from "@/components/contactSection";
+import GridBackground from "./gridBackground";
 
-export default function HeroAbout() {
+export default function Home() {
   return (
-    <main className="relative min-h-[200vh] bg-neutral-950 text-white flex cursor-none">
-      <Cursor />
-      <GridBackground />
+    <main className="h-screen p-4 md:p-8">
+      <div className="relative flex h-full w-full flex-col gap-8 overflow-y-auto rounded-xl border border-neutral-800 p-4 md:flex-row md:gap-16 md:overflow-y-hidden md:p-8">
+        <GridBackground />
 
-      <Sidebar />
+        <Sidebar />
 
-      <div className="relative z-10 flex-1 max-w-7xl mx-auto flex flex-col min-h-screen">
-        <About />
+        <div className="relative z-0 flex-1 md:overflow-y-auto">
+          <AboutSection />
+          <ProjectSection />
+          <ExperienceSection />
+          <ContactSection />
+        </div>
       </div>
     </main>
   );

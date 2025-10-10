@@ -1,90 +1,83 @@
 "use client";
 
+import React from "react";
+import { motion } from "framer-motion";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useSectionContext } from "@/context/sectionContext";
-import React, { useState } from "react";
-import { motion } from "motion/react";
-import TypeEffect from "./typeEffect";
+
+const navLinks = [
+  { href: "#about", label: "01. About", section: "about" },
+  { href: "#projects", label: "02. Projects", section: "projects" },
+  { href: "#experience", label: "03. Experience", section: "experience" },
+  { href: "#contact", label: "04. Contact", section: "contact" },
+];
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
   const { activeSection } = useSectionContext();
 
-  const navItems = [
-    { id: "about", label: "ABOUT" },
-    { id: "projects", label: "PROJECTS" },
-    { id: "experience", label: "EXPERIENCE" },
-  ];
-
   return (
-    <motion.nav
-      layout
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-      className={`z-20 sticky top-0 h-screen border-r border-white/10 backdrop-blur-xs bg-white/5 
-                 shadow-[inset_0_0_8px_rgba(255,255,255,0.15)] transition-all duration-300 
-                 ease-in-out flex flex-col justify-between ${
-                   isOpen ? "w-48" : "w-16"
-                 }`}
-    >
-      {/* --- TOP SECTION --- */}
-      <div className="relative flex flex-col space-y-6 items-start">
-        {/* Status Indicator */}
-        <div className="flex items-center h-6 space-x-2 m-6">
-          <div className="w-4 h-4 rounded-full bg-cyan-400 shadow-[0_0_6px_#22d3ee] animate-pulse" />
-          {isOpen && (
-            <TypeEffect
-              text="ONLINE"
-              classes="font-light tracking-widest text-lg ml-2"
-            />
-          )}
+    <aside className="w-full md:sticky md:top-0 md:h-full md:max-w-xs md:flex-shrink-0 lg:max-w-sm xl:max-w-md">
+      <nav className="flex flex-col gap-16 md:h-full md:justify-between">
+        {/* Header */}
+        <div>
+          <h1 className="text-4xl font-thin text-neutral-50 md:text-5xl xl:text-6xl">
+            Christopher Setiabudi
+          </h1>
+          <h2 className="mt-4 text-lg font-light text-neutral-400 md:text-xl">
+            Software Engineer | 4th Year AI Undergraduate
+          </h2>
+          <p className="mt-6 text-sm text-neutral-500">
+            Developing clean, user-focused digital experiences from the ground up.
+          </p>
         </div>
 
-        {/* --- NAV LINKS --- */}
-        <div className="flex flex-col space-y-3 font-mono text-sm w-full ml-3">
-          {navItems.map((item, i) => {
-            const active = activeSection === item.id;
-
-            return (
-              <motion.a
-                key={item.id}
-                href={`#${item.id}`}
-                whileHover={{ x: isOpen ? 3 : 0 }}
-                className="relative flex items-center group cursor-none"
-              >
-                {/* Section Marker Box */}
+        {/* Navigation */}
+        <ul className="space-y-6">
+          {navLinks.map((link) => (
+            <li key={link.section}>
+              <a href={link.href} className="group flex items-center gap-4">
                 <motion.div
-                  layout
-                  className={`diagonal-cut-8 flex items-center font-bold transition-all duration-300 px-3.5 overflow-hidden h-6
-                    ${isOpen ? "w-40" : "w-10"}
-                    ${
-                      active
-                        ? "bg-cyan-400/50 text-cyan-200 shadow-[0_0_8px_#22d3ee]"
-                        : "bg-cyan-400/25 text-cyan-500 group-hover:bg-cyan-400/40 group-hover:text-cyan-300"
-                    }`}
+                  className={`h-px transition-colors group-hover:bg-cyan-400 ${
+                    activeSection === link.section
+                      ? "w-16 bg-cyan-300"
+                      : "w-8 bg-neutral-600"
+                  }`}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+                <span
+                  className={`text-xs font-bold uppercase tracking-widest transition-colors group-hover:text-neutral-200 ${
+                    activeSection === link.section
+                      ? "text-neutral-200"
+                      : "text-neutral-500"
+                  }`}
                 >
-                  {/* Number */}
-                  <span className="flex-shrink-0 w-5 text-xs">{`0${
-                    i + 1
-                  }`}</span>
+                  {link.label}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
 
-                  {/* Label - typing animation */}
-                  {isOpen && (
-                    <TypeEffect
-                      text={"| " + item.label}
-                      classes="ml-1 whitespace-nowrap tracking-widest text-sm font-light"
-                    />
-                  )}
-                </motion.div>
-              </motion.a>
-            );
-          })}
+        {/* Footer */}
+        <div className="flex items-center gap-6">
+          <a
+            href="https://github.com/Christophers27"
+            target="_blank"
+            aria-label="GitHub"
+            className="text-neutral-400 transition-colors hover:text-cyan-400"
+          >
+            <FiGithub size={22} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/christophersetiabudi/"
+            target="_blank"
+            aria-label="LinkedIn"
+            className="text-neutral-400 transition-colors hover:text-cyan-400"
+          >
+            <FiLinkedin size={22} />
+          </a>
         </div>
-      </div>
-
-      {/* --- BOTTOM INFO BAR --- */}
-      <motion.div className="text-[10px] px-2 text-gray-400/70 font-mono text-center mb-4">
-        SYS ACTIVE — <span className="text-cyan-400">v1.0.0</span>
-      </motion.div>
-    </motion.nav>
+      </nav>
+    </aside>
   );
 }
