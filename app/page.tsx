@@ -1,4 +1,3 @@
-// page.tsx
 import Sidebar from "@/components/sidebar";
 import AboutSection from "@/components/aboutSection";
 import ProjectSection from "@/components/projectSection";
@@ -9,7 +8,7 @@ import GridBackground from "./gridBackground";
 export default function Home() {
   return (
     <main className="h-screen p-4 md:p-8">
-      <div className="relative flex h-full w-full flex-col gap-8 overflow-y-auto rounded-xl border border-neutral-800 p-4 md:flex-row md:gap-16 md:overflow-y-hidden md:p-8">
+      <div className="relative flex h-full w-full flex-col gap-8 overflow-y-auto rounded-xl border border-neutral-800 p-4 md:flex-row md:gap-8 lg:gap-12 xl:gap-16 md:overflow-y-hidden md:p-8">
         <GridBackground />
 
         <Sidebar />

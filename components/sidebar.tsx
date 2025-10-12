@@ -16,7 +16,7 @@ export default function Sidebar() {
   const { activeSection } = useSectionContext();
 
   return (
-    <aside className="w-full md:sticky md:top-0 md:h-full md:max-w-xs md:flex-shrink-0 lg:max-w-sm xl:max-w-md">
+    <aside className="w-full md:sticky md:top-0 md:h-full md:flex-shrink-0 md:w-fit md:max-w-4/10">
       <nav className="flex flex-col gap-16 md:h-full md:justify-between">
         {/* Header */}
         <div>
@@ -27,7 +27,8 @@ export default function Sidebar() {
             Software Engineer | 4th Year AI Undergraduate
           </h2>
           <p className="mt-6 text-sm text-neutral-500">
-            Developing clean, user-focused digital experiences from the ground up.
+            Developing clean, user-focused digital experiences from the ground
+            up.
           </p>
         </div>
 
