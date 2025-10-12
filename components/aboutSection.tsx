@@ -67,14 +67,14 @@ export default function AboutSection() {
           <div className="space-y-4 text-lg text-neutral-200">
             <div className="overflow-hidden font-thin">
               <motion.p variants={revealVariants}>
-                Hey, I'm Chris, a senior at{" "}
+                Hey, I&apos;m Chris, a senior at{" "}
                 <span className="font-light">Carnegie Mellon</span> studying
                 <span className="font-light"> Artificial Intelligence</span>.
                 While my coursework is deep in AI, from computer vision to NLP,
-                I'm equally passionate and self-taught in{" "}
+                I&apos;m equally passionate and self-taught in{" "}
                 <span className="font-light">front-end</span> development and
                 building great user experiences with tools like React and
-                Next.js. I've combined these interests at a{" "}
+                Next.js. I&apos;ve combined these interests at a{" "}
                 <a
                   className="font-light text-cyan-200 transition hover:text-cyan-300 hover:underline"
                   href="#projects"
@@ -82,7 +82,7 @@ export default function AboutSection() {
                   startup
                 </a>{" "}
                 I co-founded, where I built a desktop app that used AI to help
-                manage user procrastination. I'm interested in any opportunities
+                manage user procrastination. I&apos;m interested in any opportunities
                 involving either AI or front-end development, and especially
                 both! Please feel free to{" "}
                 <a
@@ -96,7 +96,7 @@ export default function AboutSection() {
             </div>
             <div className="overflow-hidden font-thin">
               <motion.p variants={revealVariants}>
-                When I'm not coding, you'll probably find me writing or
+                When I&apos;m not coding, you&apos;ll probably find me writing or
                 programming for my indie game project,{" "}
                 <a
                   className="font-light text-cyan-200 transition hover:text-cyan-300 hover:underline"
@@ -104,7 +104,7 @@ export default function AboutSection() {
                 >
                   Memoria Wake
                 </a>
-                , or reading a good book with a cup of coffee. I'm a huge sci-fi
+                , or reading a good book with a cup of coffee. I&apos;m a huge sci-fi
                 and Warhammer 40k fan, and I also spend a lot of time jogging,
                 and lately, climbing.
               </motion.p>
