@@ -14,7 +14,7 @@ export default function Home() {
 
         <Sidebar />
 
-        <div className="relative z-0 flex-1 md:overflow-y-auto">
+        <div className="relative z-0 flex-1 md:overflow-y-auto no-scrollbar">
           <AboutSection />
           <ProjectSection />
           <ExperienceSection />
