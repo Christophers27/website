@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion, Variants } from "motion/react";
+import { useSectionInView } from "@/hooks/useSectionInView";
 
 const skills = [
   { name: "Python", skill: 5 },
@@ -38,10 +39,13 @@ const revealVariants: Variants = {
 };
 
 export default function AboutSection() {
+  const { ref } = useSectionInView("about", 0.25)
+
   return (
-    <section
+    <div
       id="about"
       className="flex w-full items-center justify-center pb-24"
+      ref={ref}
     >
       <motion.div
         className="flex w-full flex-col gap-12 md:flex-row md:items-start"
@@ -82,9 +86,9 @@ export default function AboutSection() {
                   startup
                 </a>{" "}
                 I co-founded, where I built a desktop app that used AI to help
-                manage user procrastination. I&apos;m interested in any opportunities
-                involving either AI or front-end development, and especially
-                both! Please feel free to{" "}
+                manage user procrastination. I&apos;m interested in any
+                opportunities involving either AI or front-end development, and
+                especially both! Please feel free to{" "}
                 <a
                   className="font-light text-cyan-200 transition hover:text-cyan-300 hover:underline"
                   href="#contact"
@@ -96,17 +100,17 @@ export default function AboutSection() {
             </div>
             <div className="overflow-hidden font-thin">
               <motion.p variants={revealVariants}>
-                When I&apos;m not coding, you&apos;ll probably find me writing or
-                programming for my indie game project,{" "}
+                When I&apos;m not coding, you&apos;ll probably find me writing
+                or programming for my indie game project,{" "}
                 <a
                   className="font-light text-cyan-200 transition hover:text-cyan-300 hover:underline"
                   href="#projects"
                 >
                   Memoria Wake
                 </a>
-                , or reading a good book with a cup of coffee. I&apos;m a huge sci-fi
-                and Warhammer 40k fan, and I also spend a lot of time jogging,
-                and lately, climbing.
+                , or reading a good book with a cup of coffee. I&apos;m a huge
+                sci-fi and Warhammer 40k fan, and I also spend a lot of time
+                jogging, and lately, climbing.
               </motion.p>
             </div>
           </div>
@@ -119,7 +123,7 @@ export default function AboutSection() {
               <div className="h-[0.5px] w-full rounded-full bg-neutral-300" />
             </div>
             <motion.ul
-              className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm text-neutral-300 xl:grid-cols-3"
+              className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm text-neutral-300 2xl:grid-cols-3"
               variants={{
                 visible: { transition: { staggerChildren: 0.05 } },
               }}
@@ -151,6 +155,6 @@ export default function AboutSection() {
           </motion.div>
         </div>
       </motion.div>
-    </section>
+    </div>
   );
 }
