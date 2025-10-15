@@ -1,7 +1,14 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import { useSectionInView } from "@/hooks/useSectionInView";
 
 export default function ContactSection() {
+  const { ref } = useSectionInView("contact", 0.25);
+
   return (
-    <div>ContactSection</div>
-  )
+    <div className="h-screen" id="contact" ref={ref}>
+      ContactSection
+    </div>
+  );
 }
