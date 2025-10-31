@@ -1,9 +1,8 @@
-// components/sidebar.tsx
 "use client";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { FiGithub, FiLinkedin, FiChevronsUp } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiChevronUp } from "react-icons/fi";
 import { useSectionContext } from "@/context/sectionContext";
 
 const navLinks = [
@@ -84,9 +83,8 @@ export default function Sidebar() {
         {/* Navigation */}
         <motion.ul
           variants={revealVariants}
-          className={`flex md:flex-col md:space-y-6 ${
-            isMinimized ? "flex-row justify-around" : "flex-col space-y-6"
-          }`}
+          className={`flex md:flex-col md:space-y-6 ${isMinimized ? "flex-row justify-around" : "flex-col space-y-6"
+            }`}
           layout="position"
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -102,9 +100,8 @@ export default function Sidebar() {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />)}
                   <span
-                    className={`text-xs font-bold uppercase tracking-widest px-4 transition-colors group-hover:text-neutral-200 ${
-                      isActive ? "text-neutral-200" : "text-neutral-500"
-                    }`}
+                    className={`text-xs font-bold uppercase tracking-widest px-4 transition-colors group-hover:text-neutral-200 ${isActive ? "text-neutral-200" : "text-neutral-500"
+                      }`}
                   >
                     {isMinimized && !isActive ? link.label.split('.')[0] : link.label}
                   </span>
@@ -159,9 +156,9 @@ export default function Sidebar() {
         </AnimatePresence>
 
         {/* --- Toggle Button --- */}
-        <div className="-mt-12 flex justify-center md:hidden">
+        <div className="-mt-12 flex flex-col justify-center md:hidden">
           <motion.button
-            className="rounded-full bg-neutral-800/50 p-2 text-neutral-400 ring-1 ring-neutral-700"
+            className="rounded-full bg-neutral-800/50 p-2 text-neutral-400 ring-1 ring-neutral-700 mx-auto"
             onClick={() => setIsMinimized(!isMinimized)}
             whileTap={{ scale: 0.9 }}
           >
@@ -169,7 +166,7 @@ export default function Sidebar() {
               animate={{ rotate: isMinimized ? 180 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              <FiChevronsUp />
+              <FiChevronUp />
             </motion.div>
           </motion.button>
         </div>

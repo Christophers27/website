@@ -3,28 +3,7 @@
 import React from "react";
 import { motion, Variants } from "motion/react";
 import { useSectionInView } from "@/hooks/useSectionInView";
-
-const skills = [
-  { name: "Python", skill: 5 },
-  { name: "PyTorch", skill: 4 },
-  { name: "TypeScript", skill: 4 },
-  { name: "React", skill: 4 },
-  { name: "Next.js", skill: 4 },
-  { name: "Computer Vision", skill: 4 },
-  { name: "Machine Learning", skill: 4 },
-  { name: "Deep Learning", skill: 4 },
-  { name: "Node.js", skill: 3 },
-  { name: "Tailwind CSS", skill: 3 },
-  { name: "Electron", skill: 3 },
-  { name: "C#", skill: 3 },
-  { name: "Git & GitHub", skill: 5 },
-  { name: "TensorFlow", skill: 3 },
-  { name: "Language Models", skill: 3 },
-  { name: "Framer Motion", skill: 2 },
-  { name: "SQLite", skill: 2 },
-  { name: "Unity", skill: 2 },
-  { name: "Blender", skill: 1 },
-];
+import { skills } from "@/lib/data";
 
 const revealVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -32,17 +11,17 @@ const revealVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 1,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
 export default function AboutSection() {
-  const { ref } = useSectionInView("about", 0.25)
+  const { ref } = useSectionInView("about", 0.25);
 
   return (
-    <div
+    <section
       id="about"
       className="flex w-full items-center justify-center pb-24"
       ref={ref}
@@ -136,7 +115,7 @@ export default function AboutSection() {
                   whileHover={{ y: -4, scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
-                  <div className="relative flex w-full cursor-pointer flex-col rounded-full border border-neutral-300 bg-neutral-950/25 px-4 py-2">
+                  <div className="relative flex w-full cursor-pointer flex-col rounded-full border border-neutral-300 bg-neutral-800/25 px-4 py-2">
                     <div className="absolute right-4 top-1 flex flex-row-reverse gap-1">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <div
@@ -155,6 +134,6 @@ export default function AboutSection() {
           </motion.div>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 }
