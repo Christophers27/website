@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from "motion/react";
 import { useSectionInView } from "@/hooks/useSectionInView";
 import { projectsData } from "@/lib/data";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
-// For parent list to stagger each ProjectItem
 const projectItemVariant: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -18,8 +17,6 @@ const projectItemVariant: Variants = {
     },
   },
 };
-
-// For glass panel wipe in ProjectItem
 const panelWipeVariant: Variants = {
   hidden: { clipPath: "inset(0 100% 0 0)" },
   visible: {
@@ -31,8 +28,6 @@ const panelWipeVariant: Variants = {
     },
   },
 };
-
-// For content inside ProjectItem
 const contentFadeVariant: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: {
@@ -55,13 +50,13 @@ export default function ProjectSection() {
       className="flex w-full items-center justify-center pb-24"
     >
       <motion.div
-        className="flex w-full flex-col gap-12 md:flex-row md:items-start"
+        className="flex w-full flex-col gap-12 md:flex-row md:items-start md:justify-end"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
         {/* Section Title */}
-        <div className="md:w-1/4 md:min-w-fit ml-auto">
+        <div className="md:w-1/5">
           <div className="overflow-hidden">
             <motion.h2
               className="text-2xl font-thin uppercase tracking-widest text-neutral-100"
@@ -74,7 +69,7 @@ export default function ProjectSection() {
 
         {/* Project List */}
         <motion.div
-          className="flex flex-col gap-12 max-w-prose"
+          className="flex w-full max-w-prose flex-col gap-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
@@ -95,8 +90,7 @@ function ProjectItem({ project }: { project: (typeof projectsData)[0] }) {
       className="flex w-full flex-col gap-8 md:flex-row md:items-start"
       variants={projectItemVariant}
     >
-      {/* Project Content */}
-      <div className="flex-1">
+      <div>
         <motion.div
           className="group relative flex flex-col gap-4 border-l-2 border-neutral-300 bg-neutral-700/25 px-6 py-4 transition-colors hover:border-neutral-200"
           whileHover={{ y: -4 }}
@@ -107,7 +101,6 @@ function ProjectItem({ project }: { project: (typeof projectsData)[0] }) {
             className="flex flex-col gap-4"
             variants={contentFadeVariant}
           >
-            {/* Project Title and Links */}
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-extralight tracking-wider text-neutral-100 transition-colors group-hover:text-cyan-300">
                 {project.title}
@@ -135,13 +128,9 @@ function ProjectItem({ project }: { project: (typeof projectsData)[0] }) {
                 )}
               </div>
             </div>
-
-            {/* Project Description */}
             <p className="text-md font-thin text-neutral-200">
               {project.description}
             </p>
-
-            {/* Project Tags */}
             <ul className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <li

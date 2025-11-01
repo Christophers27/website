@@ -27,14 +27,14 @@ export default function AboutSection() {
       ref={ref}
     >
       <motion.div
-        className="flex w-full flex-col gap-12 md:flex-row md:items-start"
+        className="flex w-full flex-col gap-12 md:flex-row md:items-start md:justify-end"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         transition={{ staggerChildren: 0.1 }}
       >
         {/* Section Title */}
-        <div className="md:w-1/4 md:min-w-fit ml-auto">
+        <div className="md:w-1/5">
           <div className="overflow-hidden">
             <motion.h2
               className="text-2xl font-thin uppercase tracking-widest text-neutral-100"

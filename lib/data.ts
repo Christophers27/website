@@ -64,3 +64,28 @@ export const projectsData = [
     liveUrl: "https://www.scottycon-guide.com/",
   },
 ];
+
+export const experienceData = [
+  {
+    date: "May 2024 - Aug 2024",
+    title: "Software Engineer Intern",
+    company: "Credit Karma",
+    description: [
+      "Contributed to Intuit Assist (IA), an LLM-powered feature, by developing TypeScript and GraphQL front-to-back-end services with RPC-based server communication, and code coverage optimization, and rigorous Jest unit testing",
+      "Designed and implemented front-end components using proprietary tools, applying UI/UX best practices to enhance usability",
+      "Gained hands-on experience with AI/ML concepts, including prompt engineering and fine-tuning",
+    ],
+    tags: ["TypeScript", "React", "GraphQL", "Jest", "UI/UX", "AI/ML"],
+  },
+  {
+    date: "May 2023 - Aug 2023",
+    title: "Research Intern",
+    company: "AirLab",
+    description: [
+      "Developed and optimized semantic segmentation models using PyTorch and TensorFlow, advancing the lab's computer vision research",
+      "Researched and applied state-of-the-art techniques, including vision transformers, to solve real-world problems in autonomous systems and robotics",
+      "Leveraged HuggingFace and Weights & Biases (WandB) for experiment tracking, improving model reproducibility and research efficiency",
+    ],
+    tags: ["PyTorch", "TensorFlow", "Computer Vision", "AI/ML"],
+  },
+];
