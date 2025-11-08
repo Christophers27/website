@@ -34,10 +34,10 @@ export default function ExperienceSection() {
         viewport={{ once: true, amount: 0.3 }}
       >
         {/* Section Title */}
-        <div className="md:w-1/5">
+        <div className="md:w-fit">
           <div className="overflow-hidden">
             <motion.h2
-              className="text-2xl font-thin uppercase tracking-widest text-neutral-100"
+              className="text-2xl font-thin uppercase tracking-widest text-neutral-100 md:[writing-mode:sideways-lr] border-l-2 pl-4 md:pl-0 md:border-l-0 md:border-r-2"
               variants={revealVariants}
             >
               03. Experience

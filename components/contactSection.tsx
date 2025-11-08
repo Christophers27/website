@@ -24,7 +24,7 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={ref}
-      className="flex w-full items-center justify-center py-24"
+      className="flex w-full items-center justify-center pb-24"
     >
       <motion.div
         className="flex w-full flex-col gap-12 md:flex-row md:items-start md:justify-end"
@@ -34,10 +34,10 @@ export default function ContactSection() {
         transition={{ staggerChildren: 0.1 }}
       >
         {/* Section Title */}
-        <div className="md:w-1/5">
+        <div className="md:w-fit">
           <div className="overflow-hidden">
             <motion.h2
-              className="text-2xl font-thin uppercase tracking-widest text-neutral-100"
+              className="text-2xl font-thin uppercase tracking-widest text-neutral-100 md:[writing-mode:sideways-lr] border-l-2 pl-4 md:pl-0 md:border-l-0 md:border-r-2"
               variants={revealVariants}
             >
               04. Contact

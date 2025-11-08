@@ -28,7 +28,7 @@ const contentVariants: Variants = {
 };
 
 export function ExperienceItem({ experience }: { experience: Experience }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   return (
     <motion.div
