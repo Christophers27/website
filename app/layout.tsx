@@ -1,30 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SectionContextProvider } from "@/context/sectionContext";
 
-const inter = Inter({
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Christopher Setiabudi | Software Engineer",
-  description:
-    "Portfolio website of Christopher Setiabudi, a fourth-year artificial intelligence student at Carnegie Mellon University and front-end software engineer.",
+  title: "Christopher Setiabudi | AI & Full-Stack Engineer",
+  description: "Personal website of Christopher Setiabudi",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} antialiased bg-neutral-950 text-white`}
-      >
-        <SectionContextProvider>{children}</SectionContextProvider>
-      </body>
+    <html lang="en" className={`${inter.className} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
