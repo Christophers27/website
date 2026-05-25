@@ -1,25 +1,18 @@
-import Sidebar from "@/components/sidebar";
-import AboutSection from "@/components/aboutSection";
-import ProjectSection from "@/components/projectSection";
-import ExperienceSection from "@/components/experienceSection";
-import ContactSection from "@/components/contactSection";
-import GridBackground from "./gridBackground";
+"use client";
+import VersionSwitcher, { useTheme } from "@/components/VersionSwitcher";
+import RetroLayout from "@/components/RetroLayout";
+import MinimalLayout from "@/components/MinimalLayout";
 
-export default function Home() {
+export default function Portfolio() {
+  const { theme } = useTheme();
+
   return (
-    <main className="h-screen p-4 md:p-8">
-      <div className="relative flex h-full w-full transform flex-col overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950/50 p-4 backdrop-blur-sm gap-4 md:flex-row md:gap-8 md:p-8 lg:gap-12 xl:gap-16">
-        <GridBackground />
-
-        <Sidebar />
-
-        <div className="relative z-0 flex-1 overflow-y-auto no-scrollbar">
-          <AboutSection />
-          <ProjectSection />
-          <ExperienceSection />
-          <ContactSection />
-        </div>
+    <main className="max-w-7xl mx-auto w-full p-4 md:p-8 relative">
+      <div className="flex justify-end mb-4">
+        <VersionSwitcher />
       </div>
+
+      {theme === "minimal" ? <MinimalLayout /> : <RetroLayout />}
     </main>
   );
 }

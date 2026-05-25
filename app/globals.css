@@ -1,50 +1,40 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+:root {
+  --color-bg: #e6e5df;
+  --color-ink: #2c2d28;
+  --color-accent: #d46b4e;
+  --color-muted: #6a7c63;
+  --color-surface: var(--color-bg);
+  --color-text: var(--color-ink);
+  --color-border: var(--color-ink);
+  --font-sans: var(--font-space), system-ui, sans-serif;
+  --font-mono: var(--font-mono-var, monospace);
 }
 
-@keyframes line-grid-move {
-  0% {
-    background-position: 79px 79px;
-  }
-  100% {
-    background-position: 239px 239px;
-  }
+[data-theme="minimal"] {
+  --color-bg: #fafafa;
+  --color-ink: #111111;
+  --color-accent: #2563eb;
+  --color-muted: #6b7280;
+  --color-surface: var(--color-bg);
+  --color-text: var(--color-ink);
+  --color-border: #d1d5db;
 }
 
-.animate-line-grid-move {
-  animation: line-grid-move 60s linear infinite;
+html {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-surface);
 }
 
-@keyframes line-mask-move {
-  0% {
-    background-position: -0.2px -0.2px;
-  }
-  100% {
-    background-position: 159.8px 159.8px;
-  }
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-.animate-line-mask-move {
-  animation: line-mask-move 60s linear infinite;
-}
-
-@keyframes dot-grid-move {
-  0% {
-    background-position: 0px 0px;
-  }
-  100% {
-    background-position: 160px 160px;
-  }
-}
-
-.animate-dot-grid-move {
-  animation: dot-grid-move 60s linear infinite;
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
