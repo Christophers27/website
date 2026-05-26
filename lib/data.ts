@@ -69,7 +69,7 @@ export const projects = [
   {
     name: "ScottyCon | CMU Organization",
     description:
-      "As Tech Chair, I developed the convention's digital booklet (PWA) and attendee check-in QR scanner using React and Next.js.",
+      "As Tech Chair, developed the convention's digital booklet (PWA) and attendee check-in QR scanner using React and Next.js, interfacing with a Google Sheets database and accounting for large quantities of people accessing it at the same time.",
     skills: ["React", "Next.js", "TypeScript"],
     href: "https://www.scottycon-guide.com/",
   },
