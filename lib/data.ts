@@ -83,7 +83,7 @@ export const experiences = [
     location: "Remote",
     description: [
       "Created an end-to-end migration pipeline to transfer large-scale raw data from Microsoft Azure Storage into structured formats for processing and analysis.",
-      "Developed scripts to clean and transform data in DataChain, and to perform numerous queries with Snowflake",
+      "Developed scripts to clean and transform data in DataChain, and to perform numerous queries with Snowflake for comprehensive data analysis",
     ],
     skills: ["Python", "Microsoft Azure", "DataChain", "Snowflake"],
   },
@@ -105,7 +105,7 @@ export const experiences = [
     date: "May 2023 - Dec 2023",
     location: "Pittsburgh, Pennsylvania",
     description: [
-      "Developed and optimized semantic segmentation models using PyTorch and TensorFlow, advancing the lab's computer vision research",
+      "Developed and optimized **semantic segmentation** models using PyTorch and TensorFlow, advancing the lab's computer vision research",
       "Researched and applied state-of-the-art techniques, including vision transformers, to solve real-world problems in autonomous systems and robotics",
       "Leveraged HuggingFace and Weights & Biases (WandB) for experiment tracking, improving model reproducibility and research efficiency",
     ],

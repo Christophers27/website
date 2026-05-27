@@ -1,117 +1,106 @@
-import { site, experiences, projects, skills, contact } from "@/lib/data";
+"use client";
+
 import { motion } from "motion/react";
+import { site, experiences, projects, skills, contact } from "@/lib/data";
+import { Md } from "@/lib/markdown";
 
 export default function MinimalLayout() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col gap-16 max-w-3xl mx-auto"
-    >
-      <MinimalHero />
-      <MinimalSkills />
-      <MinimalProjects />
-      <MinimalExperience />
-    </motion.div>
+    <>
+      <div
+        aria-hidden
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #ffffff0d 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 max-w-4xl mx-auto flex flex-col gap-10"
+      >
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 pt-2">
+          <MinimalHero />
+          <MinimalContacts />
+        </div>
+
+        <Divider />
+        <MinimalExperience />
+        <Divider />
+        <MinimalProjects />
+        <Divider />
+        <MinimalSkills />
+      </motion.div>
+    </>
   );
+}
+
+function Divider() {
+  return <hr className="border-0 border-t border-border" />;
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4 text-muted">{children}</h2>;
 }
 
 function MinimalHero() {
   return (
-    <section>
-      <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-3" style={{ color: "var(--color-text)" }}>
-        {site.name}
-      </h1>
-      <p className="text-base font-medium mb-1" style={{ color: "var(--color-accent)" }}>
-        {site.role}
-      </p>
-      <p className="text-sm mb-6" style={{ color: "var(--color-muted)" }}>
-        {site.location}
-      </p>
-      <p className="text-base leading-relaxed mb-8" style={{ color: "var(--color-text)", opacity: 0.8 }}>
-        {site.intro}
-      </p>
-
-      {/* Availability badge */}
-      <div className="flex items-center gap-2 mb-8">
-        <span
-          className="inline-block w-2 h-2 rounded-full"
-          style={{ background: site.available ? "var(--color-muted)" : "var(--color-accent)" }}
-        />
-        <span className="text-sm font-medium" style={{ color: "var(--color-text)", opacity: 0.7 }}>
-          {site.available ? "Open to work" : "Not available"}
-        </span>
-      </div>
-
-      {/* Contact links */}
-      <div className="flex flex-wrap gap-3">
-        {contact.map((c) => (
-          <a
-            key={c.label}
-            href={c.href}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm font-medium px-4 py-2 rounded border transition-colors"
-            style={{
-              color: "var(--color-text)",
-              borderColor: "var(--color-border)",
-              background: "transparent",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent)";
-              (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-bg)";
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--color-accent)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-              (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text)";
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--color-border)";
-            }}
-          >
-            {c.label}
-          </a>
-        ))}
-      </div>
-    </section>
+    <div className="flex-1 min-w-0">
+      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-text">{site.name}</h1>
+      <p className="text-sm font-medium mb-0.5 text-accent">{site.role}</p>
+      <p className="text-xs mb-4 text-muted">{site.location}</p>
+      <p className="text-sm leading-relaxed max-w-xl text-text/70">{site.intro}</p>
+    </div>
   );
 }
 
-function MinimalSkills() {
-  const languages = skills.filter((s) => s.type === "language");
-  const technologies = skills.filter((s) => s.type === "technology");
-  const concepts = skills.filter((s) => s.type === "concept");
+function MinimalContacts() {
+  return (
+    <div className="flex flex-col gap-2 md:items-end shrink-0">
+      <div className="flex items-center gap-1.5 mb-1">
+        <span className={`w-1.5 h-1.5 rounded-full ${site.available ? "bg-green-400" : "bg-accent"}`} />
+        <span className="text-xs text-muted">{site.available ? "Open to work" : "Not available"}</span>
+      </div>
 
-  const groups = [
-    { label: "Languages", items: languages },
-    { label: "Technologies", items: technologies },
-    { label: "Concepts", items: concepts },
-  ];
+      {contact.map((c) => (
+        <a
+          key={c.label}
+          href={c.href}
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs font-medium text-text/50 hover:text-text transition-opacity"
+        >
+          {c.label} <span className="text-accent">↗</span>
+        </a>
+      ))}
+    </div>
+  );
+}
 
+function MinimalExperience() {
   return (
     <section>
-      <h2 className="text-xl font-semibold mb-6" style={{ color: "var(--color-text)" }}>
-        Skills
-      </h2>
-      <div className="flex flex-col gap-5">
-        {groups.map(({ label, items }) => (
-          <div key={label}>
-            <h3
-              className="text-xs font-semibold uppercase tracking-widest mb-3"
-              style={{ color: "var(--color-muted)" }}
-            >
-              {label}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {items.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="text-sm px-3 py-1 rounded border"
-                  style={{ color: "var(--color-text)", borderColor: "var(--color-border)", background: "transparent" }}
-                >
-                  {skill.name}
-                </span>
-              ))}
+      <SectionHeading>Experience</SectionHeading>
+      <div className="flex flex-col gap-6">
+        {experiences.map((exp) => (
+          <div key={exp.company} className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-8">
+            <div>
+              <div className="flex items-baseline gap-2 mb-0.5">
+                <h3 className="text-sm font-semibold text-text">{exp.company}</h3>
+                <span className="text-xs text-accent">{exp.title}</span>
+              </div>
+              <ul className="flex flex-col gap-1 mt-2">
+                {exp.description.map((desc, i) => (
+                  <li key={i} className="text-sm leading-relaxed flex gap-2 text-text/60">
+                    <span className="shrink-0 mt-0.5 text-accent">›</span>
+                    <Md>{desc}</Md>
+                  </li>
+                ))}
+              </ul>
             </div>
+            <span className="text-xs font-mono md:text-right mt-0.5 shrink-0 text-muted">{exp.date}</span>
           </div>
         ))}
       </div>
@@ -122,51 +111,39 @@ function MinimalSkills() {
 function MinimalProjects() {
   return (
     <section>
-      <h2 className="text-xl font-semibold mb-6" style={{ color: "var(--color-text)" }}>
-        Projects
-      </h2>
-      <div className="flex flex-col gap-8">
+      <SectionHeading>Projects</SectionHeading>
+      <div className="flex flex-col gap-5">
         {projects.map((proj) => {
           const [name, type] = proj.name.split(" | ");
           return (
-            <div key={proj.name} className="border-t pt-6" style={{ borderColor: "var(--color-border)" }}>
-              <div className="flex flex-wrap items-baseline gap-3 mb-2">
-                <h3 className="text-base font-semibold" style={{ color: "var(--color-text)" }}>
-                  {name}
-                </h3>
-                {type && (
-                  <span className="text-xs" style={{ color: "var(--color-muted)" }}>
-                    {type}
-                  </span>
-                )}
+            <div key={proj.name}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 mb-1">
+                <div className="flex items-baseline gap-2">
+                  <h3 className="text-sm font-semibold text-text">{name}</h3>
+                  {type && <span className="text-xs text-muted">{type}</span>}
+                </div>
+                <a
+                  href={proj.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-accent/70 hover:text-accent transition-colors"
+                >
+                  View ↗
+                </a>
               </div>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--color-text)", opacity: 0.75 }}>
+              <Md as="p" className="text-sm leading-relaxed mb-2 text-text/60">
                 {proj.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
+              </Md>
+              <div className="flex flex-wrap gap-1.5">
                 {proj.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-xs px-2 py-0.5 rounded"
-                    style={{
-                      color: "var(--color-accent)",
-                      background: "color-mix(in srgb, var(--color-accent) 10%, transparent)",
-                      border: "1px solid color-mix(in srgb, var(--color-accent) 30%, transparent)",
-                    }}
+                    className="text-[10px] px-2 py-0.5 rounded-sm text-accent bg-accent/10 border border-accent/20"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-              <a
-                href={proj.href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm font-medium underline underline-offset-4"
-                style={{ color: "var(--color-accent)" }}
-              >
-                View project →
-              </a>
             </div>
           );
         })}
@@ -175,38 +152,27 @@ function MinimalProjects() {
   );
 }
 
-function MinimalExperience() {
+function MinimalSkills() {
+  const groups = [
+    { label: "Languages", items: skills.filter((s) => s.type === "language") },
+    { label: "Technologies", items: skills.filter((s) => s.type === "technology") },
+    { label: "Concepts", items: skills.filter((s) => s.type === "concept") },
+  ];
+
   return (
-    <section>
-      <h2 className="text-xl font-semibold mb-6" style={{ color: "var(--color-text)" }}>
-        Experience
-      </h2>
-      <div className="flex flex-col gap-10">
-        {experiences.map((exp) => (
-          <div key={exp.company} className="border-t pt-6" style={{ borderColor: "var(--color-border)" }}>
-            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-              <h3 className="text-base font-semibold" style={{ color: "var(--color-text)" }}>
-                {exp.company}
-              </h3>
-              <span className="text-xs font-mono" style={{ color: "var(--color-muted)" }}>
-                {exp.date}
-              </span>
-            </div>
-            <p className="text-sm font-medium mb-4" style={{ color: "var(--color-accent)" }}>
-              {exp.title}
-            </p>
-            <ul className="flex flex-col gap-2">
-              {exp.description.map((desc, i) => (
-                <li
-                  key={i}
-                  className="text-sm leading-relaxed flex gap-3"
-                  style={{ color: "var(--color-text)", opacity: 0.75 }}
-                >
-                  <span style={{ color: "var(--color-accent)", flexShrink: 0 }}>–</span>
-                  {desc}
-                </li>
+    <section className="pb-8">
+      <SectionHeading>Skills</SectionHeading>
+      <div className="flex flex-col gap-4">
+        {groups.map(({ label, items }) => (
+          <div key={label} className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+            <span className="text-[10px] uppercase tracking-widest w-20 shrink-0 text-muted">{label}</span>
+            <div className="flex flex-wrap gap-1.5">
+              {items.map((skill) => (
+                <span key={skill.name} className="text-xs px-2 py-0.5 rounded-sm border border-border text-text/80">
+                  {skill.name}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
         ))}
       </div>
