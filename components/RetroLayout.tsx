@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { site, experiences, projects, skills, contact } from "@/lib/data";
 import { Md } from "@/lib/markdown";
+import ScrollArea from "@/components/ScrollArea";
 
 export default function RetroLayout() {
   return (
@@ -249,18 +250,13 @@ function RetroProjects() {
         </div>
       </div>
 
-      <div
-        className="flex-1 overflow-y-auto min-h-0 flex flex-col border-b border-ink/20 pr-1
-        [&::-webkit-scrollbar]:w-1.5
-        [&::-webkit-scrollbar-track]:bg-transparent
-        [&::-webkit-scrollbar-thumb]:bg-ink/20
-        [&::-webkit-scrollbar-thumb]:rounded-full
-        hover:[&::-webkit-scrollbar-thumb]:bg-ink/40"
-      >
-        {projects.map((proj, index) => (
-          <RetroProjectItem key={proj.name} proj={proj} index={index} />
-        ))}
-      </div>
+      <ScrollArea className="flex-1 min-h-0 border-b border-ink/20">
+        <div className="flex flex-col">
+          {projects.map((proj, index) => (
+            <RetroProjectItem key={proj.name} proj={proj} index={index} />
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   );
 }
@@ -394,14 +390,7 @@ function RetroExperience() {
         </div>
       </div>
 
-      <div
-        className="flex-1 overflow-y-auto min-h-0 relative z-10
-        [&::-webkit-scrollbar]:w-1.5
-        [&::-webkit-scrollbar-track]:bg-transparent
-        [&::-webkit-scrollbar-thumb]:bg-ink/20
-        [&::-webkit-scrollbar-thumb]:rounded-full
-        hover:[&::-webkit-scrollbar-thumb]:bg-ink/40"
-      >
+      <ScrollArea className="flex-1 min-h-0 relative z-10">
         <div className="flex flex-col gap-8 relative pr-1">
           <div className="absolute left-[7px] top-2 bottom-2 w-[2px] bg-ink/15" />
           {experiences.map((exp, index) => (
@@ -432,7 +421,7 @@ function RetroExperience() {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollArea>
     </RetroPanel>
   );
 }
