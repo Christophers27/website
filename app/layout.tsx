@@ -9,7 +9,27 @@ const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mon
 
 export const metadata: Metadata = {
   title: "Christopher Setiabudi | AI & Full-Stack Engineer",
-  description: "Personal website of Christopher Setiabudi",
+  description:
+    "Portfolio of Christopher Setiabudi — AI Engineer and Full-Stack Developer, B.S. in Artificial Intelligence from Carnegie Mellon. Specializing in machine learning, computer vision, and full-stack web applications.",
+  metadataBase: new URL("https://christopher-setiabudi.dev"),
+  openGraph: {
+    type: "website",
+    url: "https://christophe-setiabudi.dev",
+    title: "Christopher Setiabudi | AI & Full-Stack Engineer",
+    description:
+      "Portfolio of Christopher Setiabudi — AI Engineer and Full-Stack Developer, B.S. in Artificial Intelligence from Carnegie Mellon.",
+    siteName: "Christopher Setiabudi",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Christopher Setiabudi | AI & Full-Stack Engineer",
+    description:
+      "Portfolio of Christopher Setiabudi — AI Engineer and Full-Stack Developer, B.S. in Artificial Intelligence from Carnegie Mellon.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

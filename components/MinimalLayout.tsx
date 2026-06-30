@@ -62,8 +62,8 @@ function MinimalContacts({ switcher }: { switcher?: React.ReactNode }) {
       {switcher && <div className="mb-2">{switcher}</div>}
 
       <div className="flex items-center gap-1.5">
-        <span className={`w-1.5 h-1.5 rounded-full ${site.available ? "bg-muted" : "bg-accent"}`} />
-        <span className="text-xs text-muted">{site.available ? "Open to work" : "Not available"}</span>
+        <span className={`w-1.5 h-1.5 rounded-full ${site.available ? "bg-accent" : "bg-muted"}`} />
+        <span className="text-xs text-accent">{site.available ? "Open to work" : "Not available"}</span>
       </div>
 
       {contact.map((c) => (
