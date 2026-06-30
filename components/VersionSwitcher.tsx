@@ -50,9 +50,13 @@ export function useTheme() {
   return useContext(ThemeContext);
 }
 
-// ── Component ─────────────────────────────────────────────────────────────────
+// ── Shared dropdown logic ─────────────────────────────────────────────────────
 
-export default function VersionSwitcher() {
+interface VersionSwitcherProps {
+  variant?: "retro" | "minimal";
+}
+
+export default function VersionSwitcher({ variant = "retro" }: VersionSwitcherProps) {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -68,44 +72,109 @@ export default function VersionSwitcher() {
 
   return (
     <div ref={ref} className="relative z-50">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 border border-black/15 rounded-md cursor-pointer backdrop-blur-sm text-neutral-700 whitespace-nowrap hover:bg-white/90 transition-colors"
-      >
-        <span className="text-neutral-400 text-xs">◈</span>
-        <span className="font-mono text-[0.7rem] tracking-wide">{active.label}</span>
-        <span className="text-[0.5rem] text-neutral-400">{open ? "▲" : "▼"}</span>
-      </button>
+      {variant === "retro" ? (
+        <RetroTrigger label={active.label} open={open} onClick={() => setOpen((o) => !o)} />
+      ) : (
+        <MinimalTrigger label={active.label} open={open} onClick={() => setOpen((o) => !o)} />
+      )}
 
       {open && (
-        <ul
-          role="listbox"
-          aria-label="Select website version"
-          className="absolute top-[calc(100%+0.4rem)] right-0 min-w-[220px] bg-white/95 backdrop-blur-md border border-black/10 rounded-lg shadow-lg overflow-hidden list-none m-0 p-0"
-        >
-          {THEMES.map((t) => (
-            <li
-              key={t.id}
-              role="option"
-              aria-selected={t.id === theme}
-              onClick={() => {
-                setTheme(t.id);
-                setOpen(false);
-              }}
-              className={`flex flex-col gap-0.5 px-4 py-2.5 cursor-pointer border-b border-black/5 last:border-b-0 transition-colors hover:bg-black/5 ${t.id === theme ? "bg-black/4" : ""}`}
-            >
-              <span
-                className={`font-mono text-[0.7rem] font-bold ${t.id === theme ? "text-neutral-500" : "text-neutral-800"}`}
-              >
-                {t.label}
-              </span>
-              <span className="font-mono text-[0.6rem] text-neutral-400">{t.description}</span>
-            </li>
-          ))}
-        </ul>
+        <Dropdown
+          theme={theme}
+          variant={variant}
+          onSelect={(id) => {
+            setTheme(id);
+            setOpen(false);
+          }}
+        />
       )}
     </div>
+  );
+}
+
+function RetroTrigger({ label, open, onClick }: { label: string; open: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-haspopup="listbox"
+      aria-expanded={open}
+      aria-label="Switch website version"
+      className="flex items-center gap-2 font-mono text-[10px] bg-ink text-bg px-3 py-1.5 rounded uppercase tracking-wide font-bold hover:bg-ink/80 transition-colors cursor-pointer border border-bg/20"
+    >
+      <span className="text-accent">◈</span>
+      <span>{label}</span>
+      <span className="text-[8px] opacity-60">{open ? "▲" : "▼"}</span>
+    </button>
+  );
+}
+
+function MinimalTrigger({ label, open, onClick }: { label: string; open: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-haspopup="listbox"
+      aria-expanded={open}
+      aria-label="Switch website version"
+      className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest px-2.5 py-1.5 border border-border text-text/60 hover:text-text hover:border-accent transition-colors cursor-pointer"
+    >
+      <span className="text-accent text-xs">◈</span>
+      <span>{label}</span>
+      <span className="text-[8px] opacity-50">{open ? "▲" : "▼"}</span>
+    </button>
+  );
+}
+
+// ── Shared dropdown list ──────────────────────────────────────────────────────
+
+function Dropdown({
+  theme,
+  variant,
+  onSelect,
+}: {
+  theme: ThemeId;
+  variant: "retro" | "minimal";
+  onSelect: (id: ThemeId) => void;
+}) {
+  const isRetro = variant === "retro";
+
+  return (
+    <ul
+      role="listbox"
+      aria-label="Select website version"
+      className={`absolute top-[calc(100%+0.5rem)] right-0 min-w-[220px] overflow-hidden list-none m-0 p-0 z-50 ${
+        isRetro
+          ? "bg-ink border-2 border-bg/20 shadow-[4px_4px_0px_var(--color-accent)]"
+          : "bg-bg border border-border shadow-lg"
+      }`}
+    >
+      {THEMES.map((t) => (
+        <li
+          key={t.id}
+          role="option"
+          aria-selected={t.id === theme}
+          onClick={() => onSelect(t.id)}
+          className={`flex flex-col gap-0.5 px-4 py-2.5 cursor-pointer border-b last:border-b-0 transition-colors ${
+            isRetro
+              ? `border-bg/10 hover:bg-bg/5 ${t.id === theme ? "bg-accent/10" : ""}`
+              : `border-border hover:bg-ink/5 ${t.id === theme ? "bg-ink/5" : ""}`
+          }`}
+        >
+          <span
+            className={`font-mono text-[0.7rem] font-bold ${
+              isRetro
+                ? t.id === theme
+                  ? "text-accent"
+                  : "text-bg/80"
+                : t.id === theme
+                  ? "text-accent"
+                  : "text-text/80"
+            }`}
+          >
+            {t.label}
+          </span>
+          <span className={`font-mono text-[0.6rem] ${isRetro ? "text-bg/40" : "text-text/40"}`}>{t.description}</span>
+        </li>
+      ))}
+    </ul>
   );
 }

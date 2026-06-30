@@ -79,7 +79,7 @@ export const experiences = [
   {
     company: "Anthelion Capital Holdings",
     title: "Software Engineer Intern",
-    date: "December 2026",
+    date: "December 2025",
     location: "Remote",
     description: [
       "Created an end-to-end migration pipeline to transfer large-scale raw data from Microsoft Azure Storage into structured formats for processing and analysis.",

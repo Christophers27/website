@@ -6,14 +6,14 @@ import { site, experiences, projects, skills, contact } from "@/lib/data";
 import { Md } from "@/lib/markdown";
 import ScrollArea from "@/components/ScrollArea";
 
-export default function RetroLayout() {
+export default function RetroLayout({ switcher }: { switcher?: React.ReactNode }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       className="grid grid-cols-1 md:grid-cols-12 auto-rows-min gap-6 relative z-10"
     >
-      <RetroHero />
+      <RetroHero switcher={switcher} />
       <RetroSkills />
       <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
         <RetroProjects />
@@ -23,20 +23,20 @@ export default function RetroLayout() {
   );
 }
 
-function RetroHero() {
+function RetroHero({ switcher }: { switcher?: React.ReactNode }) {
   return (
     <div className="md:col-span-12 flex flex-col md:flex-row border-[3px] border-ink rounded-2xl overflow-hidden bg-bg shadow-[8px_8px_0px_var(--color-ink)]">
-      <RetroIntroPanel />
+      <RetroIntroPanel switcher={switcher} />
       <RetroContactPanel />
     </div>
   );
 }
 
-function RetroIntroPanel() {
+function RetroIntroPanel({ switcher }: { switcher?: React.ReactNode }) {
   return (
     <div className="w-full md:w-[65%] bg-accent text-bg relative z-10 flex flex-col justify-between p-6 md:p-10 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink">
       {/* Top deco bar */}
-      <div className="flex justify-between items-start mb-4 border-b-2 border-bg/20 pb-4">
+      <div className="flex justify-between items-center mb-4 border-b-2 border-bg/20 pb-4">
         <div className="flex items-center gap-2">
           <div className="flex gap-1">
             <div className="w-3 h-3 bg-bg rounded-sm" />
@@ -47,7 +47,7 @@ function RetroIntroPanel() {
             SYS.INIT // CORE_INTRO
           </span>
         </div>
-        <div className="font-mono text-[10px] opacity-70">LAT: 40.4406° N // LON: 79.9959° W</div>
+        {switcher}
       </div>
 
       {/* Name, role, intro */}
@@ -273,7 +273,7 @@ function RetroProjectItem({ proj, index }: { proj: (typeof projects)[number]; in
       >
         <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-center" />
         <div className="flex items-center gap-3 pl-4 md:pl-5 w-full min-w-0">
-          <span className="font-mono text-xs text-ink/40 shrink-0">0{index + 1}</span>
+          <span className="font-mono text-xs text-ink/40 shrink-0">{String(index + 1).padStart(2, "0")}</span>
           <h3 className="text-lg md:text-xl font-bold tracking-tight uppercase truncate grow">{name}</h3>
           {type && (
             <span className="hidden xl:inline-block font-mono text-[10px] border border-ink/60 px-2 py-0.5 rounded text-ink/80 shrink-0">

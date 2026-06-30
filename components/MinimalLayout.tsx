@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { site, experiences, projects, skills, contact } from "@/lib/data";
 import { Md } from "@/lib/markdown";
 
-export default function MinimalLayout() {
+export default function MinimalLayout({ switcher }: { switcher?: React.ReactNode }) {
   return (
     <>
       <div
@@ -23,7 +23,7 @@ export default function MinimalLayout() {
       >
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 pt-2">
           <MinimalHero />
-          <MinimalContacts />
+          <MinimalContacts switcher={switcher} />
         </div>
 
         <Divider />
@@ -56,11 +56,13 @@ function MinimalHero() {
   );
 }
 
-function MinimalContacts() {
+function MinimalContacts({ switcher }: { switcher?: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-2 md:items-end shrink-0">
-      <div className="flex items-center gap-1.5 mb-1">
-        <span className={`w-1.5 h-1.5 rounded-full ${site.available ? "bg-green-400" : "bg-accent"}`} />
+      {switcher && <div className="mb-2">{switcher}</div>}
+
+      <div className="flex items-center gap-1.5">
+        <span className={`w-1.5 h-1.5 rounded-full ${site.available ? "bg-muted" : "bg-accent"}`} />
         <span className="text-xs text-muted">{site.available ? "Open to work" : "Not available"}</span>
       </div>
 
