@@ -6,11 +6,9 @@ export const site = {
   intro:
     "AI Engineer and Full-Stack Software Engineer with a B.S. in Artificial Intelligence from Carnegie Mellon. I specialize in building intelligent, scalable applications that bridge complex machine learning with seamless user experiences.",
   about: [
-    "Hi, I'm Chris! I recently graduated from Carnegie Mellon University with a B.S. in Artificial Intelligence. My work sits at the intersection of complex machine learning and robust application development. While my academic roots run deep in computer vision and NLP, I'm also a passionate full-stack software engineer who loves building out the complete picture: from the underlying AI models to seamless user interfaces using tools like React and Next.js.",
+    "Hi, I'm Chris! I like building things end-to-end. I just find something satisfying about designing a system and watching the pieces slot together, the data flow working as information is conveyed between front- and back-end, functions doing exactly what they're supposed to. I also find AI fascinating, its ability to find patterns in data humans can't easily see, such as medical models identifying tumors in scan patterns that people can't really differentiate.",
 
-    "I brought these two worlds together at a startup I co-founded, where I engineered an AI-driven desktop app designed to help users conquer procrastination. Whether I'm designing an architecture or polishing a UI, I thrive on building intelligent solutions that solve real problems.",
-
-    "When I step away from the code, I'm usually programming my indie game, Memoria Wake, or digging into heavy sci-fi and Warhammer 40k lore. You can also find me jogging, writing, or just relaxing with a good book and a wonderful cup of homemade coffee.",
+    "In my free time, I'm usually working on my indie game, Memoria Wake, playing video games, or exploring sci-fi media. You can also find me jogging, writing, or just relaxing with a good book and a nice cup of coffee."
   ],
 };
 

@@ -24,15 +24,76 @@ export default function RetroLayout({ switcher }: { switcher?: React.ReactNode }
 }
 
 function RetroHero({ switcher }: { switcher?: React.ReactNode }) {
+  const [aboutOpen, setAboutOpen] = useState(false);
+
   return (
-    <div className="md:col-span-12 flex flex-col md:flex-row border-[3px] border-ink rounded-2xl overflow-hidden bg-bg shadow-[8px_8px_0px_var(--color-ink)]">
-      <RetroIntroPanel switcher={switcher} />
-      <RetroContactPanel />
+    <div className="md:col-span-12 flex flex-col border-[3px] border-ink rounded-2xl overflow-hidden bg-bg shadow-[8px_8px_0px_var(--color-ink)]">
+      <div className="flex flex-col md:flex-row">
+        <RetroIntroPanel switcher={switcher} aboutOpen={aboutOpen} onToggleAbout={() => setAboutOpen((o) => !o)} />
+        <RetroContactPanel />
+      </div>
+
+      {/* Full-width about drawer */}
+      <AnimatePresence initial={false}>
+        {aboutOpen && (
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden border-t-[3px] border-ink"
+          >
+            <div className="relative pt-6 md:pt-10 px-6 md:px-10 pb-2 bg-bg overflow-hidden">
+              <div className="absolute top-3 left-6 font-mono text-[10px] uppercase tracking-widest select-none text-ink/50">
+                SYS.BIO // OPERATOR_PROFILE
+              </div>
+              <div className="absolute top-3 right-6 font-mono text-[10px] text-ink/50 select-none">◈</div>
+
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-[64%] flex flex-col gap-2 md:pr-8 pb-6 md:pb-0 relative ">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-3 h-px bg-accent" />
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-ink/45">IDENTITY.LOG</span>
+                  </div>
+                  <p className="text-sm text-ink/75 leading-relaxed">{site.about[0]}</p>
+                  <div className="mt-auto  font-mono text-[8px] text-ink/35 self-end">SEQ_01 // AUTH_OK</div>
+                </div>
+
+                <div className="hidden md:flex flex-col items-center gap-1 w-px mx-0 self-stretch">
+                  <div className="w-px flex-1 bg-ink/10" />
+                  <div className="w-1.5 h-1.5 bg-ink/20 rotate-45 shrink-0" />
+                  <div className="w-px flex-1 bg-ink/10" />
+                </div>
+                <div className="md:hidden h-px w-full bg-ink/10 my-1 relative">
+                  <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-ink/20 rotate-45" />
+                </div>
+
+                <div className="md:w-[36%] flex flex-col gap-2 md:pl-8">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-3 h-px bg-accent" />
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-ink/45">OFFLINE.LOG</span>
+                  </div>
+                  <p className="text-sm text-ink/75 leading-relaxed">{site.about[1]}</p>
+                  <div className="mt-auto pt-4 font-mono text-[8px] text-ink/35 self-end">SEQ_02 // AUTH_OK</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-function RetroIntroPanel({ switcher }: { switcher?: React.ReactNode }) {
+function RetroIntroPanel({
+  switcher,
+  aboutOpen,
+  onToggleAbout,
+}: {
+  switcher?: React.ReactNode;
+  aboutOpen: boolean;
+  onToggleAbout: () => void;
+}) {
   return (
     <div className="w-full md:w-[65%] bg-accent text-bg relative z-10 flex flex-col justify-between p-6 md:p-10 border-b-[3px] md:border-b-0 md:border-r-[3px] border-ink">
       {/* Top deco bar */}
@@ -65,18 +126,35 @@ function RetroIntroPanel({ switcher }: { switcher?: React.ReactNode }) {
         <p className="text-lg text-bg/90 leading-relaxed max-w-2xl font-medium">{site.intro}</p>
       </div>
 
-      {/* Bottom deco */}
-      <div className="mt-4 flex justify-between items-end">
-        <div className="flex gap-[2px] h-8 opacity-40">
-          {[1, 3, 1, 2, 4, 1, 1, 0.5, 3, 2, 1, 1, 4, 2, 1, 5, 1, 1, 6, 0.5, 0.5, 0.5, 1, 0.5, 1].map((w, i) => (
-            <div key={i} className="bg-bg h-full" style={{ width: `${w * 2}px` }} />
-          ))}
-        </div>
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-20">
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="w-1 h-3 bg-bg rounded-full" />
-          ))}
-        </div>
+      {/* Pull tab */}
+      <div className="mt-4 relative z-10">
+        <button
+          onClick={onToggleAbout}
+          className="flex items-center gap-2 w-full border-t-2 border-bg/20 pt-3 cursor-pointer group"
+        >
+          <div className="flex gap-[2px] h-5 opacity-30 group-hover:opacity-50 transition-opacity">
+            {[1, 3, 1, 2, 4, 1, 1, 0.5, 3, 2, 1, 1, 4, 2, 1, 5, 1, 1, 6, 0.5, 0.5, 0.5, 1, 0.5, 1].map((w, i) => (
+              <div key={i} className="bg-bg h-full" style={{ width: `${w * 2}px` }} />
+            ))}
+          </div>
+          <span className="font-mono text-[9px] uppercase tracking-widest text-bg/50 group-hover:text-bg/80 transition-colors ml-1">
+            {aboutOpen ? "SYS.BIO // MAXIMIZED" : "SYS.BIO // MINIMIZED"}
+          </span>
+          <motion.span
+            animate={{ rotate: aboutOpen ? 180 : 0 }}
+            transition={{ duration: 0.25 }}
+            className="font-mono text-[10px] text-bg/50 group-hover:text-bg/80 transition-colors ml-auto"
+          >
+            ▼
+          </motion.span>
+        </button>
+      </div>
+
+      {/* Right edge deco */}
+      <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-20">
+        {[...Array(12)].map((_, i) => (
+          <div key={i} className="w-1 h-3 bg-bg rounded-full" />
+        ))}
       </div>
     </div>
   );
